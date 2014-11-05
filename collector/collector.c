@@ -42,6 +42,8 @@ $$LIC$$
 #include "ipfix_col.h"
 #include "ipfix_def_fokus.h"
 #include "ipfix_fields_fokus.h"
+#include "ipfix_def_ericsson.h"
+#include "ipfix_fields_ericsson.h"
 
 #include "mlog.h"
 #include "mpoll.h"
@@ -465,6 +467,10 @@ int main (int argc, char *argv[])
         exit(1);
     }
     if ( ipfix_add_vendor_information_elements( ipfix_ft_fokus ) <0 ) {
+        fprintf( stderr, "ipfix_add_ie() failed: %s\n", strerror(errno) );
+        exit(1);
+    }
+    if ( ipfix_add_vendor_information_elements( ipfix_ft_ericsson ) <0 ) {
         fprintf( stderr, "ipfix_add_ie() failed: %s\n", strerror(errno) );
         exit(1);
     }
